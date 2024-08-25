@@ -13,7 +13,7 @@ class UserSerializer(BaseUserSerializer):
     email = serializers.CharField(required=False)
     full_name = serializers.CharField(required=False)
     phone_number = serializers.CharField(required=False)
-    date_of_birth = serializers.DateField(required=False)
+    age = serializers.IntegerField(required=False)
 
     class Meta(BaseUserSerializer.Meta):
         fields = ['email', 'full_name', 'phone_number', 'age']
