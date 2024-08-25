@@ -7,7 +7,7 @@ ALL_FIELDS = '__all__'
 
 class UserCreateSerializer(BaseUserCreateSerializer):
     class Meta(BaseUserCreateSerializer.Meta):
-        fields = ['password', 'email', 'full_name', 'phone_number', 'date_of_birth']
+        fields = ['password', 'email', 'full_name', 'phone_number', 'age']
 
 class UserSerializer(BaseUserSerializer):
     email = serializers.CharField(required=False)
@@ -16,4 +16,4 @@ class UserSerializer(BaseUserSerializer):
     date_of_birth = serializers.DateField(required=False)
 
     class Meta(BaseUserSerializer.Meta):
-        fields = ['email', 'full_name', 'phone_number', 'date_of_birth']
+        fields = ['email', 'full_name', 'phone_number', 'age']

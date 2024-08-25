@@ -7,7 +7,7 @@ import string
 class ListeningPracticeCategory(models.Model):
     title = models.CharField(max_length=255)
     code = models.CharField(max_length=10)
-    image_url = models.FileField()
+    image_url = models.FileField(upload_to="images/category")
     # practices = models.ManyToManyField(ListeningPractice, related_name="category")
 
     def generate_unique_code(self, length):
@@ -31,7 +31,7 @@ class ListeningPracticeCategory(models.Model):
 class SpeakingPracticeCategory(models.Model):
     title = models.CharField(max_length=255)
     code = models.CharField(max_length=10)
-    image_url = models.FileField()
+    image_url = models.FileField(upload_to="images/category")
     # practices = models.ManyToManyField(SpeakingPractice, related_name="category")
 
     def generate_unique_code(self, length):

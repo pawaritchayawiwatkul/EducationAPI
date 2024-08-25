@@ -7,14 +7,20 @@ from exercise.serializers import SpeakingPracticeDetailSerializers, ListeningPra
 
 class ExerciseViewSet(ViewSet):
     def retrieve(self, request, code):
-        if code[:2] == "LI": 
-            instance = ListeningPractice.objects.prefetch_related("questions").get(code=code)
-            ser = ListeningPracticeDetailSerializers(instance=instance)
-            return Response(ser.data)
-        else:
-            instance = SpeakingPractice.objects.prefetch_related("targets").get(code=code)
-            ser = SpeakingPracticeDetailSerializers(instance=instance)
-            return Response(ser.data)
+        try: 
+            if code[:2] == "LI": 
+                instance = ListeningPractice.objects.prefetch_related("questions").get(code=code)
+                ser = ListeningPracticeDetailSerializers(instance=instance)
+                return Response(ser.data)
+            else:
+                instance = SpeakingPractice.objects.prefetch_related("targets").get(code=code)
+                ser = SpeakingPracticeDetailSerializers(instance=instance)
+                return Response(ser.data)
+        except ListeningPractice.DoesNotExist:
+            return Response({"error": "Listening Practice Doesn't Exist."}, 404)
+        except SpeakingPractice.DoesNotExist:
+            return Response({"error": "Speaking Practice Doesn't Exist."}, 404)
+        return Response(status=400)
 
     def search(self, request):
         query = request.GET.get("query")

@@ -43,7 +43,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     full_name = CharField(max_length=255, blank=True)
     phone_number = CharField(max_length=10, blank=True)
     password = CharField(max_length=255, blank=True)
-    date_of_birth = models.DateField()
+    age = models.IntegerField()
     uuid = UUIDField(default=uuid.uuid4, editable=False, unique=True)
     is_admin = BooleanField(default=False)
     is_staff = BooleanField(
@@ -63,7 +63,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = CustomUserManager()
 
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ["full_name", "phone_number", "date_of_birth"]
+    REQUIRED_FIELDS = ["full_name", "phone_number", "age"]
 
     
     def has_perm(self, perm: str, obj=True) -> bool:

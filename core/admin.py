@@ -6,6 +6,6 @@ from .models import User
 
 @admin.register(User)
 class User(admin.ModelAdmin):
-    list_display = ('email', 'full_name', 'phone_number', 'date_of_birth')
+    list_display = ('email', 'full_name', 'phone_number', 'age')
     search_fields = ('email', 'full_name')
-    fields = ('email', 'full_name', 'phone_number', 'date_of_birth')
+    fields = ('email', 'full_name', 'phone_number', 'age')

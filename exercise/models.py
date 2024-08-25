@@ -6,7 +6,7 @@ import random
 class ListeningPractice(models.Model):
     title = models.CharField(max_length=255)
     code = models.CharField(max_length=12)
-    image_url = models.FileField()
+    image_url = models.FileField(upload_to="images/practice")
     released_date = models.DateField(auto_now_add=True)
     number_of_plays = models.IntegerField(default=0)
     category = models.ManyToManyField(ListeningPracticeCategory, related_name="practices")
@@ -45,6 +45,7 @@ class ListeningQuestion(models.Model):
     choice2 = models.CharField(max_length=255)
     choice3 = models.CharField(max_length=255)
     choice4 = models.CharField(max_length=255)
+    image = models.FileField(upload_to="images/question")
     exercise = models.ForeignKey(ListeningPractice, on_delete=models.CASCADE, related_name="questions")
 
 class SpeakingPractice(models.Model):
@@ -57,7 +58,7 @@ class SpeakingPractice(models.Model):
     code = models.CharField(max_length=255)
     practice_type = models.CharField(choices=PRACTICE_TYPE_CHOICE, default="SW", max_length=2)
     category = models.ManyToManyField(SpeakingPracticeCategory,related_name="practices")
-    image_url = models.FileField()
+    image_url = models.FileField(upload_to="images/practice")
     released_date = models.DateField(auto_now_add=True)
     number_of_plays = models.IntegerField(default=0)
     question_amount = models.IntegerField(default=0)
@@ -86,3 +87,4 @@ class SpeakingPractice(models.Model):
 class SpeakingTargets(models.Model):
     text = models.TextField()
     targets = models.ForeignKey(SpeakingPractice, models.CASCADE, related_name="targets")
+    image = models.FileField(upload_to="images/question")
