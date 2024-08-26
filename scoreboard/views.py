@@ -18,8 +18,9 @@ class ScoreboardViewSet(ViewSet):
         score = model.objects.values("score").get(scoreboard__exercise__code=code, user_id=request.user.id)["score"]
         higher_scores = model.objects.filter(score__gt=score, scoreboard__exercise__code=code).order_by('score')[:5][::-1]
         lower_score = model.objects.filter(score__lte=score, scoreboard__exercise__code=code).order_by('-score')[:6]
-        start_rank = model.objects.filter(score__gt=score, scoreboard__exercise__code=code).count() - len(higher_scores) + 2
+        start_rank = model.objects.filter(score__gt=score, scoreboard__exercise__code=code).count() - len(higher_scores) + 1
         ser = RankingSerializer(list(higher_scores) + list(lower_score), many=True)
+        print(start_rank)
         result = ser.data
         for r in result:
             r["ranking"] = start_rank
