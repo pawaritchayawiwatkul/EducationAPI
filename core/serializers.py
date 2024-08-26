@@ -16,4 +16,4 @@ class UserSerializer(BaseUserSerializer):
     age = serializers.IntegerField(required=False)
 
     class Meta(BaseUserSerializer.Meta):
-        fields = ['email', 'full_name', 'phone_number', 'age']
+        fields = ['email', 'full_name', 'phone_number', 'age', "uuid"]

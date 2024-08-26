@@ -5,7 +5,7 @@ from exercise.models import ListeningPractice, ListeningQuestion, SpeakingPracti
 class ListeningQuestionSerializers(serializers.ModelSerializer):
     class Meta:
         model = ListeningQuestion
-        fields = ("answer", "choice1", "choice2", "choice3", "choice4")
+        fields = ("answer", "choice1", "choice2", "choice3", "choice4", "image")
 
 class ListeningPracticeDetailSerializers(serializers.ModelSerializer):
     questions = ListeningQuestionSerializers(many=True, read_only=True)
@@ -22,7 +22,7 @@ class ListListeningPracticeSerializers(serializers.ModelSerializer):
 class SpeakingTargetSerializers(serializers.ModelSerializer):
     class Meta:
         model = SpeakingTargets
-        fields = ("text", )
+        fields = ("text", "image")
 
 class SpeakingPracticeDetailSerializers(serializers.ModelSerializer):
     targets = SpeakingTargetSerializers(many=True, read_only=True)
