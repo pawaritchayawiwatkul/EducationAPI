@@ -10,6 +10,9 @@ class ListeningPracticeCategory(models.Model):
     image_url = models.FileField(upload_to="images/category")
     # practices = models.ManyToManyField(ListeningPractice, related_name="category")
 
+    def __str__(self) -> str:
+        return self.title
+    
     def generate_unique_code(self, length):
         """Generate a unique random code."""
         characters = string.ascii_letters + string.digits
@@ -34,6 +37,9 @@ class SpeakingPracticeCategory(models.Model):
     image_url = models.FileField(upload_to="images/category")
     # practices = models.ManyToManyField(SpeakingPractice, related_name="category")
 
+    def __str__(self) -> str:
+        return self.title
+    
     def generate_unique_code(self, length):
         """Generate a unique random code."""
         characters = string.ascii_letters + string.digits

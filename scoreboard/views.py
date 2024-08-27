@@ -43,10 +43,14 @@ class ScoreboardViewSet(ViewSet):
             score = int(score)
             try:
                 try: 
+                    exercise = exercise_model.objects.get(code=code)
                     scoreboard = scoreboard_model.objects.get(exercise__code=code)
                 except scoreboard_model.DoesNotExist:
-                    exercise = exercise_model.objects.get(code=code)
                     scoreboard = scoreboard_model.objects.create(exercise=exercise)
+                except exercise_model.DoesNotExist:
+                    return Response(status=404)
+                exercise.number_of_plays += 1
+                exercise.save()
                 instance = model.objects.get(user_id=request.user.id, scoreboard_id=scoreboard.id)
                 instance.score = score
                 instance.save()
