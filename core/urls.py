@@ -6,7 +6,8 @@ app_name = 'core'
 
 profileView = ProfileViewSet.as_view({
     'put': 'update',
-    'get': 'retrieve'
+    'get': 'retrieve',
+    'delete': 'remove_account'
 })
 
 # Enter URL path below

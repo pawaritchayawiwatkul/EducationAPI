@@ -20,3 +20,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+# ssh -i /Users/pawaritpawaritts/Documents/Development/macbook_bridger.pem ubuntu@13.236.60.197

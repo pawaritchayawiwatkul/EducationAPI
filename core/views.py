@@ -25,3 +25,7 @@ class ProfileViewSet(ViewSet):
             return Response(status=200)
         else:
             return Response(ser.errors, status=400)
+    
+    def remove_account(self, request):
+        request.user.delete()
+        return Response(status=200)

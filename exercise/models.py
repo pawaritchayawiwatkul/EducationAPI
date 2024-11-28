@@ -29,7 +29,9 @@ class ListeningPractice(models.Model):
         if self.code is None or self.code == "":
             self.code = "LI" + self._generate_unique_code(10)
         super(ListeningPractice, self).save(*args, **kwargs)
-    
+        self.question_amount = self.questions.count()
+        super(ListeningPractice, self).save(*args, **kwargs)
+
     def __str__(self) -> str:
         return self.title
 
@@ -80,6 +82,9 @@ class SpeakingPractice(models.Model):
         if self.code is None or self.code == "":
             self.code = self.practice_type + self._generate_unique_code(10)
         super(SpeakingPractice, self).save(*args, **kwargs)
+        self.question_amount = self.targets.count()
+        super(SpeakingPractice, self).save(*args, **kwargs)
+
 
     def __str__(self) -> str:
         return self.title
